@@ -1,5 +1,1 @@
-Hi uhhhhhhhhhhhhhhhhhhhhhhh I make mods and games (usually the games are in python/using python)
-The mods that I make are
-  {
-  "BTD6 mods"
-  }
+i rarely make btd6 mods unless someone requested them sooooooooo yea
