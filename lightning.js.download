@@ -1,0 +1,133 @@
+function setX(objId, xpos) {  
+    if (typeof objId === 'string') {
+        var cObjId = '#' + objId
+        var stuffToMove = document.querySelectorAll(cObjId);
+        stuffToMove.forEach(function(item, index) {
+            item.style.position = 'absolute';
+            item.style.left = xpos;
+        })
+    } else {
+        objId.style.position = 'absolute';
+        objId.style.left = xpos;
+    }
+    
+}
+function setY(objId, ypos) {
+    if (typeof objId === 'string') {
+        var cObjId = '#' + objId
+        var stuffToMove = document.querySelectorAll(cObjId);
+        stuffToMove.forEach(function(item, index) {
+            var obj = item;
+            obj.style.position = 'absolute';
+            obj.style.top = ypos;
+        })   
+    } else {
+        objId.style.position = 'absolute';
+        objId.style.top = ypos;
+    }
+    
+}
+function addY(objIda, yposa) {
+    if (typeof objIda === 'string') {
+        var cObjIda = '#' + objIda
+        var stuffToMove = document.querySelectorAll(cObjIda);
+        stuffToMove.forEach(function(item, index) {
+            var obja = item;
+            if (obja.style.top == "") {
+                obja.style.top = 0;
+            }
+            obja.style.position = "absolute";
+            var yes = obja.style.getPropertyValue('top').replace('px', '')
+            console.log(yes)
+            yes = parseInt(yes) + yposa;
+            console.log(yes)
+            
+            obja.style.top = yes;
+        })   
+    } else {
+        var obja = objIda;
+        if (obja.style.top == "") {
+            obja.style.top = 0;
+        }
+        obja.style.position = "absolute";
+        var yes = obja.style.getPropertyValue('top').replace('px', '')
+        console.log(yes)
+        yes = parseInt(yes) + yposa;
+        console.log(yes)
+        
+        obja.style.top = yes;
+    }
+    
+}
+function addX(objIdb, xposb) {
+    if (typeof objIdb === 'string') {
+        var cObjIdb = '#' + objIdb
+        var stuffToMove = document.querySelectorAll(cObjIdb);
+        stuffToMove.forEach(function(item, index) {
+            var obja = item;
+            if (obja.style.left == "") {
+                obja.style.left = 0;
+            }
+            obja.style.position = "absolute";
+            var yes = obja.style.getPropertyValue('left').replace('px', '')
+            console.log(yes)
+            yes = parseInt(yes) + xposb;
+            console.log(yes)
+            
+            obja.style.left = yes;
+        })
+    } else {
+        var obja = objIdb;
+        if (obja.style.left == "") {
+            obja.style.left = 0;
+        }
+        obja.style.position = "absolute";
+        var yes = obja.style.getPropertyValue('left').replace('px', '')
+        console.log(yes)
+        yes = parseInt(yes) + xposb;
+        console.log(yes)
+        
+        obja.style.left = yes;
+    }
+    
+}
+function x(objId) {
+    if (typeof objId === 'string') {
+        return parseInt(document.getElementById(objId).style.getPropertyValue('left').replace('px', ''));
+    } else {
+        return parseInt(objId.style.getPropertyValue('left').replace('px', ''));
+    }
+}
+function y(objId) {
+    if (typeof objId === 'string') {
+        return parseInt(document.getElementById(objId).style.getPropertyValue('top').replace('px', ''));
+    } else {
+        return parseInt(objId.style.getPropertyValue('top').replace('px', ''));
+    }
+}
+function isTouching(objId1, objId2) {
+    //obj1 is the object/line creator
+    //obj2 is the object its touching
+    var mmm = null;
+    var testToTouch1 = document.querySelectorAll('#' + objId1);
+    var testToTouch2 = document.querySelectorAll('#' + objId2);
+    testToTouch1.forEach(function(item, index){
+        var obj1 = item;
+        var yline1 = y(item) - parseInt(obj1.height) / 2;
+        var yline2 = y(item) + parseInt(obj1.height) / 2
+        var xline1 = x(item) - parseInt(obj1.width) / 2;
+        var xline2 = x(item) + parseInt(obj1.width) / 2
+        testToTouch2.forEach(function(obj2, index2) {
+            if (y(obj2) < yline2 && y(obj2) > yline1 && x(obj2) < xline2 && x(obj2) > xline1) {
+                console.log(true, xline1, xline2, yline1, yline2);
+                mmm = true;
+                return;
+            } else {
+                mmm = false;
+                return;
+            }
+        })
+        return;
+    })
+    return mmm;
+}
